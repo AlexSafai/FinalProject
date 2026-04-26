@@ -1,0 +1,20 @@
+[
+    {
+      "id": "1",
+      "src": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4u0bK8cSiFAxeVoxocnokGwQBlHQsqpPtGA&s",
+      "alt": "Team Celebrating a Win!",
+      "caption": "Team celebrating our big victory!"
+    },
+    {
+      "id": "2",
+      "src": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjkNNc9V6GrtvTOEMKsBUnkzgxKAOIMc0b_A&s",
+      "alt": "Team at the most recent game!",
+      "caption": "Team cheering us on at the latest match!"
+    },
+    {
+      "id": "3",
+      "src": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSuHacROL6YTfb0CKIGBmpkemzv5BZskH4FIw&s",
+      "alt": "Team with our beloved star player!",
+      "caption": "Team hanging out with our star player!"
+    }
+  ]

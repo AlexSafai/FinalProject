@@ -1,0 +1,61 @@
+{
+    "program": [
+        {
+            "id": 1,
+            "name": "Practice",
+            "date": "2026-04-24",
+            "location": "Mets Practice Ground",
+            "description": "Getting the old bat lose and our legs running"
+        },
+        {
+            "id": 2,
+            "name": "Practice Session",
+            "date": "2026-04-25",
+            "location": "Mets Practice Ground",
+            "description": "Come meet the team"
+        },
+        {
+            "id": 3,
+            "name": "Mets vs Phillies",
+            "date": "2026-04-26",
+            "location": "Citizens Bank Park",
+            "description": "Away against the phillies. Going to be a rough one."
+        },
+        {
+            "id": 4,
+            "name": "Press Conference",
+            "date": "2026-04-27",
+            "location": "Citi Field Press Box",
+            "description": "Press meets with coach to yell at them for probably losing to the phillies."
+        },
+        {
+            "id": 5,
+            "name": "Practice Session",
+            "date": "2026-04-28",
+            "location": "Mets Practice Ground",
+            "description": " Practice throwing the ball and hitting it "
+        },{
+            "id": 6,
+            "name": "Buffet for the Heavy Hitters",
+            "date": "2026-05-03",
+            "location": "Golden Corral",
+            "description": "To feed the heavy hitters, we are going to Golden Corral for all you can eat buffet"
+        },
+        {
+            "id": 7,
+            "name": "Game Day vs. Dodgers",
+            "date": "2026-05-02",
+            "location": "Citi Field",
+            "description": "I hate the dodgers."
+        },
+        {
+            "id": 8,
+            "name": "Grimace Mcdonalds Photo Shoot",
+            "date": "2026-05-01",
+            "location": "Flushing NY Mcdonalds",
+            "description": "Photo shoot with Grimace. Pretend to hit grimace with bat."
+        }
+ 
+    ]
+        
+}
