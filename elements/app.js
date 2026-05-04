@@ -8,11 +8,13 @@ import "./week-event.js";
 import "./image-loader.js";
 import "./team-roster.js";
 
-const grimace = new URL("./page-boilerplate/images/grimace_mets.jpeg", import.meta.url).href;
+const grimace = new URL("./page-boilerplate/images/grimace_mets.webp", import.meta.url).href;
 const rizzler = new URL("./page-boilerplate/images/mets_rizzler.webp", import.meta.url).href;
 const crowd = new URL("./page-boilerplate/images/mets_crowd.jpeg", import.meta.url).href;
 const mascot = new URL("./page-boilerplate/images/mets_mascot.jpg", import.meta.url).href;
 const mrMet = new URL("./page-boilerplate/images/mr-met.jpg", import.meta.url).href;
+const coach1 = new URL("./page-boilerplate/images/metscoach.jpg", import.meta.url).href;
+const coach2 = new URL("./page-boilerplate/images/metscoach2.jpeg", import.meta.url).href;
 
 export class AppRoot extends DDDSuper(I18NMixin(LitElement)) {
 
@@ -49,6 +51,19 @@ export class AppRoot extends DDDSuper(I18NMixin(LitElement)) {
       this.route = window.location.pathname || "/";
       this.requestUpdate();
     });
+    window.addEventListener('hashchange', () => this._scrollToHash());
+  }
+
+  firstUpdated() {
+    this._scrollToHash();
+  }
+
+  _scrollToHash() {
+    if (!window.location.hash) return;
+    requestAnimationFrame(() => {
+      const el = document.querySelector(window.location.hash);
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
   }
 
   handleNavigation(e) {
@@ -62,19 +77,32 @@ export class AppRoot extends DDDSuper(I18NMixin(LitElement)) {
     if (this.route.startsWith("/schedule")) {
       return html`
         <app-page page="schedule">
-          <h2>Full Schedule</h2>
+          <h2 id="full-schedule">Full Schedule</h2>
           <event-calendar></event-calendar>
           <p>Events coming up!</p>
+          <h2 id="week">Current Week</h2>
           <week-event></week-event>
+          <h2>Watch previous highlights</h2>
+          <div style="display: flex; align-items: center; gap: 16px; flex-wrap: wrap;">
+            <iframe
+              width="560"
+              height="315"
+              src="https://www.youtube.com/embed/fbZISufeO2c"
+              title="Mets vs Angels highlights"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen></iframe>
+            <a href="https://www.mlb.com/standings/" target="_blank" rel="noopener noreferrer">View our standings</a>
+          </div>
         </app-page>
       `;
     }
     if (this.route.startsWith("/team")) {
       return html`
         <app-page page="team">
-          <h1>Meet the Team!</h1>
-          <p>Our amazing players and staff who make everything possible.</p>
-          <h2>Team Roster:</h2>
+          <h1>The Mets Team</h1>
+          <p>Our looney toones team:</p>
+          <h2 id="roster">Team Roster:</h2>
             <team-roster .members=${[
               { name: "Grimace", role: "Team Captain", image: grimace },
               { name: "Rizzler", role: "Vice Captain", image: rizzler },
@@ -82,15 +110,15 @@ export class AppRoot extends DDDSuper(I18NMixin(LitElement)) {
               { name: "Mrs Mett", role: "First Base", image: mascot },
               { name: "Cartoon Mett", role: "Outfield", image: mrMet },
             ]}></team-roster>
-          <h2>Coaches:</h2>
+          <h2 id="coaches">Coaches:</h2>
             <team-roster .members=${[
-              { name: "Coach1", role: "Head Coach", image: grimace },
-              { name: "Coach2", role: "Assistant Coach", image: mascot },
+              { name: "Coach Mendoza", role: "Head Coach", image: coach1 },
+              { name: "Coach Sad Fan", role: "Assistant Coach", image: coach2 },
             ]}></team-roster>
         </app-page>
       `;
     }
-    
+
     if (this.route.startsWith("/about")) {
       return html`
         <app-page page="about">
@@ -99,7 +127,7 @@ export class AppRoot extends DDDSuper(I18NMixin(LitElement)) {
           <image-carousel>
             <image-loader src="/api/images.json"></image-loader>
           </image-carousel>
-          <h2>Contact Us</h2>
+          <h2 id="contact">Contact Us</h2>
           <p>
              Email: gomets@mets.com <br>
              Phone: 718-507-8499 <br>

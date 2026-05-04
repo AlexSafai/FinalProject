@@ -76,22 +76,22 @@ export class AppBanner extends DDDSuper(I18NMixin(LitElement)) {
         css`
             /* Light Theme */
             :host {
-                --bg-color: var(--ddd-theme-default-roarLight);
-                --text-color: var(--ddd-theme-default-potentialMidnight);
+                --bg-color: #ffffff;
+                --text-color: #1e3a8a;
             }
 
             /* Dark Theme */
             @media(prefers-color-scheme: dark) {
                 :host {
-                --bg-color: #f97316;
-                --text-color: #1e3a8a;
+                --bg-color: #0a0f1e;
+                --text-color: #ffffff;
                 }
             }
 
             :host {
                 display: block;
                 width: 100%;
-                background-color: var(--text-color);
+                background-color: var(--bg-color);
             }
             .header {
                 width: 100%;
@@ -132,7 +132,7 @@ export class AppBanner extends DDDSuper(I18NMixin(LitElement)) {
                 border: none;
                 cursor: pointer;
                 padding: var(--ddd-spacing-2);
-                color: #000000;
+                color: #f97316;
                 font-size: var(--ddd-font-size-xl);
                 min-width: 44px;
                 min-height: 44px;

@@ -59,10 +59,8 @@ export class NavButton extends DDDSuper(I18NMixin(LitElement)) {
     }
 
     _handleClickOutside(e) {
-        // Only handle click-outside on mobile
-        if (!this.isMobile || !this.isOpen) return;
-        
-        // Check if click is outside this component
+        if (!this.isOpen) return;
+
         if (!e.composedPath().includes(this)) {
             this.isOpen = false;
         }
@@ -85,19 +83,9 @@ export class NavButton extends DDDSuper(I18NMixin(LitElement)) {
     _handleButtonClick(e) {
         e.preventDefault();
         e.stopPropagation();
-        
-        // On mobile, toggle the dropdown and dispatch event to close others
-        if (this.isMobile) {
-            const wasOpen = this.isOpen;
-            
-            // Dispatch event to close all other dropdowns
-            this.dispatchEvent(new CustomEvent('nav-button-click', {
-                bubbles: true,
-                composed: true,
-                detail: { button: this }
-            }));
-            
-            this.isOpen = !wasOpen;
+
+        if (this.link) {
+            window.location.href = this.link;
         }
     }
 
@@ -166,24 +154,25 @@ export class NavButton extends DDDSuper(I18NMixin(LitElement)) {
                 display: flex;
             }
             ::slotted(a) {
-                display: block;
+                display: flex;
+                align-items: center;
                 padding: var(--ddd-spacing-3) var(--ddd-spacing-4);
-                color: var(--ddd-theme-default-potentialMidnight);
+                background-color: #ffffff;
+                color: #1e3a8a;
                 text-decoration: none;
                 font-family: var(--ddd-font-navigation);
                 font-size: var(--ddd-font-size-s);
                 transition: background-color 0.2s ease;
-                border-bottom: 1px solid var(--ddd-theme-default-limestoneGray);
+                border-bottom: 1px solid #ccc;
                 min-height: 44px;
                 box-sizing: border-box;
-                display: flex;
-                align-items: center;
             }
             ::slotted(a:last-child) {
                 border-bottom: none;
             }
             ::slotted(a:hover) {
-                background-color: var(--ddd-theme-default-limestoneLight);
+                background-color: #f97316;
+                color: #ffffff;
             }
 
             /* Mobile styles */
@@ -211,8 +200,9 @@ export class NavButton extends DDDSuper(I18NMixin(LitElement)) {
                     display: flex;
                 }
                 ::slotted(a) {
-                    border-bottom: 1px solid var(--ddd-theme-default-coalyGray);
-                    background-color: var(--ddd-theme-default-limestoneGray);
+                    background-color: #ffffff;
+                    color: #1e3a8a;
+                    border-bottom: 1px solid #ccc;
                     padding: var(--ddd-spacing-3) var(--ddd-spacing-4);
                 }
                 ::slotted(a:last-child) {

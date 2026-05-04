@@ -9,8 +9,8 @@ import "./app-banner.js";
 import "./animated-image.js";
 import "./nav-button.js";
 
-const home1 = new URL("./images/mr-met.jpg", import.meta.url).href;
-const home2 = new URL("./images/mr-met.jpg", import.meta.url).href;
+const home1 = new URL("./images/metslogo.png", import.meta.url).href;
+const home2 = new URL("./images/metslogo.png", import.meta.url).href;
 
 /**
  * `app-page`
@@ -94,18 +94,17 @@ export class AppPage extends DDDSuper(I18NMixin(LitElement)) {
                             hoveredSrc="${home2}">
                         </animated-image>
                         <nav-button slot="buttons" label="Schedule" link="/schedule">
-                            <a href="/schedule">Schedule Page</a>
-                            <a href="/schedule/games">Games</a>
-                            <a href="/schedule/practice">Practice</a>
+                            <a href="/schedule#full-schedule">Full Schedule</a>
+                            <a href="/schedule#week">Current Week</a>
                         </nav-button>
                         <nav-button slot="buttons" label="Team" link="/team">
                             <a href="/team">Team Page</a>
-                            <a href="/team/roster">Roster</a>
-                            <a href="/team/coaches">Coaches</a>
+                            <a href="/team#roster">Roster</a>
+                            <a href="/team#coaches">Coaches</a>
                         </nav-button>
                         <nav-button slot="buttons" label="About" link="/about">
                             <a href="/about">About Page</a>
-                            <a href="/about/contact">Contact</a>
+                            <a href="/about#contact">Contact</a>
                         </nav-button>
                     </app-banner>
                 </div>

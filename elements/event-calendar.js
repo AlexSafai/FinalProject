@@ -27,6 +27,7 @@ export class EventCalendar extends DDDSuper(I18NMixin(LitElement)) {
     // calendar state
     this.currentDate = new Date();
     this.events = [];
+    this.selectedEvent = null;
   }
 
   static get properties() {
@@ -35,6 +36,7 @@ export class EventCalendar extends DDDSuper(I18NMixin(LitElement)) {
       title: { type: String },
       currentDate: { type: Object },
       events: { type: Array },
+      selectedEvent: { type: Object },
     };
   }
 
@@ -97,7 +99,7 @@ export class EventCalendar extends DDDSuper(I18NMixin(LitElement)) {
                 <div class="events">
                   ${dayEvents.map(
                     (event) =>
-                      html`<div class="event-item">${event.title}</div>`
+                      html`<div class="event-item" @click=${() => this._selectEvent(event)}>${event.title}</div>`
                   )}
                 </div>
               `
@@ -122,6 +124,14 @@ export class EventCalendar extends DDDSuper(I18NMixin(LitElement)) {
       this.currentDate.getMonth() + 1,
       1
     );
+  }
+
+  _selectEvent(event) {
+    this.selectedEvent = event;
+  }
+
+  _closeCard() {
+    this.selectedEvent = null;
   }
 
   static get styles() {
@@ -216,6 +226,19 @@ export class EventCalendar extends DDDSuper(I18NMixin(LitElement)) {
           margin-top: 2px;
           padding: 2px;
           border-radius: 3px;
+          cursor: pointer;
+        }
+
+        .event-card {
+          margin-top: 16px;
+          padding: 12px;
+          border: 1px solid #ccc;
+          background-color: white;
+          color: #333;
+        }
+
+        .event-card button {
+          margin-top: 8px;
         }
       `,
     ];
@@ -242,6 +265,16 @@ export class EventCalendar extends DDDSuper(I18NMixin(LitElement)) {
         <div class="calendar-grid">
           ${this._renderCalendarDays()}
         </div>
+
+        ${this.selectedEvent ? html`
+          <div class="event-card">
+            <div><strong>Name:</strong> ${this.selectedEvent.name}</div>
+            <div><strong>Date:</strong> ${this.selectedEvent.date}</div>
+            <div><strong>Location:</strong> ${this.selectedEvent.location}</div>
+            <div><strong>Description:</strong> ${this.selectedEvent.description}</div>
+            <button @click=${this._closeCard}>Close</button>
+          </div>
+        ` : ""}
 
         <!-- slot if you want extra content under the calendar -->
         <slot></slot>
